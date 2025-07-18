@@ -5,6 +5,7 @@ CompileFlags:
       -DUNICODE,
       -D_UNICODE,
       -DFANY_DEBUG,
+      "-IC:/Users/SonnyCalcr/EDisk/CppCodes/IMECodes/TsfApp/src",
       -Wno-unused-includes,
       -Wno-microsoft-goto,
       # -Wno-unused-value,
