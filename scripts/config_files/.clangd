@@ -1,0 +1,18 @@
+CompileFlags:
+  Add: [
+      "-std=c++17", # needed when using MSVC
+      # Macros
+      -DUNICODE,
+      -D_UNICODE,
+      -DFANY_DEBUG,
+      -Wno-unused-includes,
+      -Wno-microsoft-goto,
+      # -Wno-unused-value,
+      -Wno-nonportable-include-path,
+      -Wno-microsoft-extra-qualification,
+      -Wno-invalid-token-paste,
+    ] # ignore some specific warnings
+Diagnostics:
+  UnusedIncludes: None # This would not work in Windows, why?
+  # Includes:
+  #   IgnoreHeader: ["Private.h", "Globals.h"] # Suppress unused includes waraning
