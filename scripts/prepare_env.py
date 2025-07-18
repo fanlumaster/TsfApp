@@ -13,18 +13,18 @@ project_root_path = os.path.dirname(cur_file_path)
 
 user_home = os.path.expanduser("~")
 
-MetasequoiaImeTsf_root_path = normpath(project_root_path)
-MetasequoiaImeTsf_src_path = normpath(os.path.join(MetasequoiaImeTsf_root_path, "src"))
+TsfApp_root_path = normpath(project_root_path)
+TsfApp_src_path = normpath(os.path.join(TsfApp_root_path, "src"))
 vcpkg_include_path = normpath(
     os.path.join(
-        MetasequoiaImeTsf_root_path,
+        TsfApp_root_path,
         "build",
         "vcpkg_installed",
         "x64-windows",
         "include",
     )
 )
-utfcpp_path = normpath(os.path.join(MetasequoiaImeTsf_root_path, "utfcpp", "source"))
+utfcpp_path = normpath(os.path.join(TsfApp_root_path, "utfcpp", "source"))
 webview2_path = normpath(
     os.path.join(
         user_home,
@@ -52,22 +52,21 @@ boost_path = normpath(os.path.join(user_home, "scoop", "apps", "boost", "current
 #
 # project_root/.clangd
 #
-dot_clangd_file = os.path.join(
-    MetasequoiaImeTsf_root_path, "scripts", "config_files", ".clangd"
-)
-dot_clangd_output_file = os.path.join(MetasequoiaImeTsf_root_path, ".clangd")
+dot_clangd_file = os.path.join(TsfApp_root_path, "scripts", "config_files", ".clangd")
+dot_clangd_output_file = os.path.join(TsfApp_root_path, ".clangd")
 with open(dot_clangd_file, "r", encoding="utf-8") as f:
     lines = f.readlines()
+lines[8] = f'      "-I{vcpkg_include_path}",\n'
 with open(dot_clangd_output_file, "w", encoding="utf-8") as f:
     f.writelines(lines)
 
 #
-# project_root/tests/CMakeLists.txt
+# project_root/CMakeLists.txt
 #
 CMakeLists_file = os.path.join(
-    MetasequoiaImeTsf_root_path, "scripts", "config_files", "CMakeLists.txt"
+    TsfApp_root_path, "scripts", "config_files", "CMakeLists.txt"
 )
-CMakeLists_output_file = os.path.join(MetasequoiaImeTsf_root_path, "CMakeLists.txt")
+CMakeLists_output_file = os.path.join(TsfApp_root_path, "CMakeLists.txt")
 with open(CMakeLists_file, "r", encoding="utf-8") as f:
     lines = f.readlines()
 with open(CMakeLists_output_file, "w", encoding="utf-8") as f:
@@ -77,11 +76,9 @@ with open(CMakeLists_output_file, "w", encoding="utf-8") as f:
 # CMakePresets.json
 #
 CMakePresets_file = os.path.join(
-    MetasequoiaImeTsf_root_path, "scripts", "config_files", "CMakePresets.json"
+    TsfApp_root_path, "scripts", "config_files", "CMakePresets.json"
 )
-CMakePresets_file_output_file = os.path.join(
-    MetasequoiaImeTsf_root_path, "CMakePresets.json"
-)
+CMakePresets_file_output_file = os.path.join(TsfApp_root_path, "CMakePresets.json")
 with open(CMakePresets_file, "r", encoding="utf-8") as f:
     lines = f.readlines()
 with open(CMakePresets_file_output_file, "w", encoding="utf-8") as f:
