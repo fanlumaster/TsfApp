@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25.0)
-set(PROJECT_NAME TsfPad)
+set(PROJECT_NAME TsfApp)
 project(${PROJECT_NAME} LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -10,34 +10,38 @@ add_definitions(
     /DUNICODE=1
 )
 
+# fmt
+find_package(fmt CONFIG REQUIRED)
+
 include_directories("./")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-set(MY_EXECUTABLE_NAME "TsfPad")
+set(MY_EXECUTABLE_NAME "TsfApp")
 
 add_executable(${PROJECT_NAME} WIN32
-    "./DisplayAttribute.cpp"
-    "./DisplayAttribute.h"
-    "./private.h"
-    "./resource.h"
-    "./TextContainer.cpp"
-    "./TextContainer.h"
-    "./TextEditor.cpp"
-    "./TextEditor.h"
-    "./TextEditSink.cpp"
-    "./TextEditSink.h"
-    "./TextInputCtrl.cpp"
-    "./TextInputCtrl.h"
-    "./TextLayout.cpp"
-    "./TextLayout.h"
-    "./TextStore.cpp"
-    "./TextStore.h"
-    "./TsfPad.cpp"
-    "./TsfPad.h"
-    "./TsfPad.rc"
+    "./src/afxres.h"
+    "./src/context.cpp"
+    "./src/dataobj.cpp"
+    "./src/dataobj.h"
+    "./src/funcprov.cpp"
+    "./src/globals.h"
+    "./src/persist.cpp"
+    "./src/propldr.cpp"
+    "./src/propldr.h"
+    "./src/resource.h"
+    "./src/test.cpp"
+    "./src/textstor.cpp"
+    "./src/tsfapp.cpp"
+    "./src/tsfapp.rc"
+    "./src/tsfedit.cpp"
+    "./src/tsfedit.h"
+    "./src/tsfwnd.cpp"
+    "./src/tsfwnd.h"
+    "./src/winres.h"
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC 
-    imm32.lib
+    comctl32.lib
+    fmt::fmt-header-only
 )

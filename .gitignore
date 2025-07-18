@@ -8,6 +8,6 @@ draft/
 *.log
 # CMakeSettings.json
 log.txt
-/.clangd
+# /.clangd
 # /CMakeLists.txt
 # /CMakePresets.json
